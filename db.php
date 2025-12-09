@@ -1,6 +1,19 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "sec_documents");
-if(!$conn){
-    die("Connection failed: " . mysqli_connect_error());
+$DB_HOST = "localhost";
+$DB_USER = "root";
+$DB_PASS = ""; 
+$DB_NAME = "sec_documents";
+
+// Create connection
+$conn = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+
+// Check connection
+if ($conn->connect_error) {
+    die("DB connection failed: " . $conn->connect_error);
+}
+$conn->set_charset("utf8mb4");
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 ?>

@@ -1,3 +1,7 @@
+<?php
+// index.php - simple landing that links to login
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,6 +18,20 @@
 
     <link rel="stylesheet" href="./styles.css" />
   </head>
+  <script>
+    const elements = document.querySelectorAll(".tile,.hero1,.hero2");
+    const revealOnScroll = () => {
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          el.style.opacity = 1;
+          el.style.transform = "none";
+        }
+      });
+    };
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+  </script>
 
   <body>
     <nav>
@@ -21,10 +39,10 @@
       <div>
         <a href="#home">Home</a>
         <a href="#about">Meet the Developer</a>
-        <a href="#upload">Upload</a>
-        <a href="#files">Documents</a>
-        <a href="">Signup</a>
-        <a href="">Login</a>
+        <a href="./upload.php">Upload</a>
+        <a href="./files.php">Documents</a>
+        <a href="./signup.php">Signup</a>
+        <a href="./login.php">Login</a>
       </div>
     </nav>
 
