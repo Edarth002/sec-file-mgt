@@ -1,0 +1,48 @@
+MySQL seed script
+
+CREATE DATABASE sec_documents;
+
+USE sec_documents;
+
+-- Approved staff
+CREATE TABLE approved_staff (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  staff_id VARCHAR(50) UNIQUE,
+  full_name VARCHAR(100),
+  email VARCHAR(100) UNIQUE
+);
+
+-- Users
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  staff_id VARCHAR(50) UNIQUE,
+  username VARCHAR(50) UNIQUE,
+  email VARCHAR(100),
+  password VARCHAR(255),
+  is_super_admin TINYINT(1) DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Logs
+CREATE TABLE logs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  action VARCHAR(50),
+  file_name VARCHAR(255),
+  staff_id VARCHAR(50),
+  action_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insert super admin into approved_staff
+INSERT INTO approved_staff (staff_id, full_name, email)
+VALUES ('FRN/SEC/01005', 'Super Admin', 'admin@sec.gov.ng');
+
+-- Insert super admin into users
+INSERT INTO users (staff_id, username, email, password, is_super_admin)
+VALUES (
+  'FRN/SEC/01005', 
+  'admin', 
+  'admin@sec.gov.ng', 
+  '$2y$10$eC1C7aT.fjsnX9KQx5.6heTq3v5nZX0sUkjLzK/9rB1T8x3QX4.7K', 
+  1
+);
+

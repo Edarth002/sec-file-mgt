@@ -1,61 +1,247 @@
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
   padding: 0;
   width: 100%;
   scroll-behavior: smooth;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #e2e8f0, #ffffff);
+  color: #1e293b;
 }
 
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: #1e293b;
+  padding: 1.2rem 3rem;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(8px);
   color: #fff;
+  top: 0;
 }
-
 nav a {
   color: #fff;
-  margin-left: 1.5rem;
+  margin-left: 2rem;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
 }
-
 nav a:hover {
-  font-weight: bold;
+  opacity: 0.75;
 }
-
-a {
-  cursor: pointer;
-}
-
 .logo {
-  font-size: larger;
-  cursor: not-allowed;
+  font-size: 1.8rem;
+  font-weight: 800;
 }
 
+/* HERO */
 .hero {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: auto;
-  padding: 0 5rem;
+  gap: 3rem;
+  padding: 4rem 6rem;
 }
-
 .hero1 {
-  width: 50%;
-  font-size: 2rem;
+  width: 55%;
+}
+.hero1 h1 {
+  font-size: 4rem;
+  font-weight: 800;
+}
+.hero1 p {
+  font-size: 1.2rem;
+  line-height: 1.7rem;
 }
 .hero2 {
-  width: 50%;
+  width: 60%;
 }
 .hero2 img {
   width: 100%;
 }
 
+/* ABOUT - TILE GRID */
+.about {
+  padding: 6rem 3rem;
+  text-align: center;
+}
 .about h1 {
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+}
+/* ===== NEW TRIANGULAR GLASS GRID ===== */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2.2rem;
+  padding: 3rem;
+  justify-items: center;
+}
+
+/* Staggered Layout to mimic triangular formation */
+.about-grid .tile:nth-child(1) {
+  transform: translateY(0);
+}
+.about-grid .tile:nth-child(2) {
+  transform: translateY(40px);
+}
+.about-grid .tile:nth-child(3) {
+  transform: translateY(0);
+}
+.about-grid .tile:nth-child(4) {
+  transform: translateY(40px);
+}
+.about-grid .tile:nth-child(5) {
+  transform: translateY(0);
+}
+.about-grid .tile:nth-child(6) {
+  transform: translateY(40px);
+}
+
+/* Glass + Hover Lift */
+.tile {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 18px;
+  padding: 2.2rem;
+  box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.08);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+  position: relative;
+  animation: fadeInUp 1.3s ease both;
+}
+.tile:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+}
+
+/* Smooth scroll reveal animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* GLASS TILES */
+.tile {
+  padding: 2rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+.tile:hover {
+  transform: translateY(-6px);
+}
+
+/* ======== GALLERY ======== */
+.img-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.img-gallery img {
+  width: 100%;
+  border-radius: 14px;
+}
+
+/* =============================
+   FILE UPLOAD SECTION
+============================= */
+.upload {
+  padding: 4rem 3rem;
+  background: #f1f5f9;
+}
+.upload h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+form {
+  max-width: 450px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form input,
+form select {
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+}
+form button {
+  background: #1e293b;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+form button:hover {
+  opacity: 0.85;
+}
+
+/* =============================
+   DOCUMENT SEARCH & FILTER
+============================= */
+.files {
+  padding: 4rem 3rem;
+}
+.files h2 {
   text-align: center;
   font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.file-controls {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem auto;
+  justify-content: center;
+}
+.file-controls input,
+.file-controls select {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+}
+table {
+  width: 85%;
+  margin: auto;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+th,
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #cbd5e1;
+}
+th {
+  background: #1e293b;
+  color: white;
+}
+
+/* FOOTER */
+footer {
+  margin-top: 4rem;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  background: #1e293b;
+  color: white;
 }
