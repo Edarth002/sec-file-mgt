@@ -1,61 +1,24 @@
-MySQL seed script
+Application Summary: SEC Document Management System
+The SEC Document Management System is a robust, internally-focused web application designed to provide the Nigerian Securities and Exchange Commission (SEC) with a secure and audited platform for managing official documents.
 
-CREATE DATABASE sec_documents;
+Key Purpose and Security
+The primary function of the application is to ensure that critical organizational documents are stored, categorized, and accessed securely, upholding data integrity and compliance standards. A key security feature is the pre-approval workflow: only staff members whose details have been whitelisted by a Super Admin can proceed to register and gain access to the system.
 
-USE sec_documents;
+Core User Functions
+The system is structured around the efficient handling of classified files:
 
--- Approved staff
-CREATE TABLE approved_staff (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  staff_id VARCHAR(50) UNIQUE,
-  full_name VARCHAR(100),
-  email VARCHAR(100) UNIQUE
-);
+File Management: Authenticated staff members can upload files, assigning them to specific categories (e.g., Policy Documents, Legal Filings) and adding descriptive tags for ease of retrieval.
 
--- Users
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  staff_id VARCHAR(50) UNIQUE,
-  username VARCHAR(50) UNIQUE,
-  email VARCHAR(100),
-  password VARCHAR(255),
-  is_super_admin TINYINT(1) DEFAULT 0,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+Search and Retrieval: Staff can quickly view, filter, and search the document repository by category, filename, and tags.
 
--- Logs
-CREATE TABLE logs (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  action VARCHAR(50),
-  file_name VARCHAR(255),
-  staff_id VARCHAR(50),
-  action_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+Secure Download: Users are able to download documents, with all download activity being meticulously tracked.
 
-CREATE TABLE IF NOT EXISTS documents (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  file_name VARCHAR(255),
-  stored_name VARCHAR(255),
-  stored_path VARCHAR(255),
-  category VARCHAR(100),
-  tags VARCHAR(255),
-  notes TEXT,
-  uploaded_by VARCHAR(80),
-  uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+Administrative Control and Auditing
+The system maintains a strict hierarchy to safeguard operations:
 
+Super Admin Role: A privileged user manages the system, including the crucial ability to input and approve new staff IDs, granting them eligibility to register.
 
--- Insert super admin into approved_staff
-INSERT INTO approved_staff (staff_id, full_name, email)
-VALUES ('FRN/SEC/01005', 'Super Admin', 'admin@sec.gov.ng');
+Comprehensive Logs: Every significant action taken within the system—including logins, uploads, downloads, and user approvals—is recorded in a dedicated audit trail. These System Logs are accessible only to the Super Admin, ensuring complete accountability and oversight.
 
--- Insert super admin into users
-INSERT INTO users (staff_id, username, email, password, is_super_admin)
-VALUES (
-  'FRN/SEC/01005', 
-  'admin', 
-  'admin@sec.gov.ng', 
-  '$2y$10$eC1C7aT.fjsnX9KQx5.6heTq3v5nZX0sUkjLzK/9rB1T8x3QX4.7K', 
-  1
-);
-
+Technical Foundation
+The application is built on a standard and reliable web development stack: PHP, MySQL, HTML, and CSS. The use of PHP ensures secure back-end processing and database interaction, while the system's design employs secure password handling for user authentication.
