@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['document'])) {
         $stored_name = uniqid('sec_') . '.' . $extension;
         $stored_path = 'uploads/' . $stored_name;
 
-        // Move the uploaded file
         if (move_uploaded_file($file['tmp_name'], $stored_path)) {
             // Insert file metadata into the database
             $insert_stmt = $conn->prepare("INSERT INTO documents (file_name, stored_name, stored_path, category, tags, notes, uploaded_by) VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -70,7 +69,7 @@ include 'includes/header.php';
     <div class="form-group">
         <label for="category">Category</label>
         <select id="category" name="category" required>
-            <option value="">-- Select Category --</option>
+            <option value="">Select Category</option>
             <?php foreach ($categories as $cat): ?>
                 <option value="<?= $cat ?>"><?= $cat ?></option>
             <?php endforeach; ?>

@@ -2,7 +2,7 @@
 $file_path = __FILE__;
 include 'db.php';
 
-// Define categories for search/filter dropdown
+
 $categories = ['Policy Documents', 'Financial Reports', 'Legal Filings', 'Internal Memos', 'Other'];
 
 // --- Handle Search/Filter Logic (Feature 5) ---
@@ -42,11 +42,11 @@ include 'includes/header.php';
 
 <h2>📊 Document Repository Dashboard</h2>
 
-<p>Welcome, **<?= htmlspecialchars($_SESSION['username'] ?? 'Staff') ?>** (<?= htmlspecialchars($_SESSION['staff_id'] ?? 'N/A') ?>). Use the search tool to find documents.</p>
+<p>Welcome, <?= htmlspecialchars($_SESSION['username'] ?? 'Staff') ?> (<?= htmlspecialchars($_SESSION['staff_id'] ?? 'N/A') ?>). Use the search tool to find documents.</p>
 
 <form method="GET" action="dashboard.php" style="display: flex; gap: 10px; margin-bottom: 20px;">
     <select name="category" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
-        <option value="">-- All Categories --</option>
+        <option value=""> All Categories </option>
         <?php foreach ($categories as $cat): ?>
             <option value="<?= $cat ?>" <?= $search_category == $cat ? 'selected' : '' ?>><?= $cat ?></option>
         <?php endforeach; ?>

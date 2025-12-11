@@ -40,7 +40,7 @@ include '../includes/header.php';
 <?php if (isset($success)): ?><div class="alert alert-success"><?= $success ?></div><?php endif; ?>
 <?php if (isset($error)): ?><div class="alert alert-danger"><?= $error ?></div><?php endif; ?>
 
-<form method="POST" action="add_staff.php">
+<form method="POST" action="<?= BASE_URL ?>admin/add_staff.php">
     <div class="form-group">
         <label for="new_staff_id">New Staff ID</label>
         <input type="text" id="new_staff_id" name="new_staff_id" placeholder="e.g., FRN/SEC/99999" required>
@@ -57,6 +57,6 @@ include '../includes/header.php';
 </form>
 
 <h3 style="margin-top: 30px;">Admin Actions</h3>
-<p><a href="view_logs.php" class="btn btn-secondary">View System Logs</a></p>
+<p><a href="<?= BASE_URL ?>admin/view_logs.php" class="btn btn-secondary">View System Logs</a></p>
 
 <?php include '../includes/footer.php'; ?>

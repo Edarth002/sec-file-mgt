@@ -1,5 +1,5 @@
 <?php
-$file_path = __FILE__; // Pass file path for header
+$file_path = __FILE__;
 include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
